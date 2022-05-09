@@ -1,10 +1,14 @@
 import React from 'react';
-
+import Navbar from './Components/Navbar';
+import Homepage from './Components/Homepage';
+import { CssBaseline } from '@mui/material';
 
 const App = () => {
   return (
     <>
-      <div>App</div>
+      <CssBaseline />
+      <Navbar />
+      <Homepage />
     </>
   );
 };
