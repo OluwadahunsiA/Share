@@ -16,9 +16,17 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useStyles, theme } from './styles';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCirlceOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import { useDispatch } from 'react-redux';
+import { openModal } from '../../Actions/movieActions';
 
 const Navbar = () => {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
+  const handleIconClick = () => {
+    dispatch(openModal());
+  };
+
   return (
     <ThemeProvider theme={theme}>
       <Box>
@@ -26,7 +34,7 @@ const Navbar = () => {
           <Toolbar>
             <Typography variant='h6' sx={{ flexGrow: 1 }}>
               Share
-              <IconButton>
+              <IconButton onClick={handleIconClick}>
                 <AddCirlceOutlineIcon />
               </IconButton>
             </Typography>
