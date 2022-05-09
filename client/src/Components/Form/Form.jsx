@@ -24,12 +24,13 @@ const Form = ({ open }) => {
 
   const handleFormClose = () => {
     dispatch(closeModal());
+    setMovie({ title: '', description: '', tags: '', file: '' });
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log(movie.file[0]);
-    console.log(movie);
+    setMovie({ title: '', description: '', tags: '', file: '' });
+    dispatch(closeModal());
   };
 
   const handleChange = (e) => {
