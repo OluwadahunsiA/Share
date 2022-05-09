@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { useStyles } from './styles';
+import Moviecard from '../Moviecard';
 
 const Homepage = () => {
   const classes = useStyles();
@@ -8,6 +9,7 @@ const Homepage = () => {
   return (
     <>
       <div className={classes.boxStyle}></div>
+      <Moviecard />
     </>
   );
 };

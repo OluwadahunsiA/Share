@@ -1,8 +1,8 @@
 import { makeStyles } from '@mui/styles';
 
 export const useStyles = makeStyles({
-  boxStyle: {
-    position: 'relative',
-    marginTop: '50px',
+  cardActions: {
+    display: 'flex',
+    justifyContent: 'space-between',
   },
 });
