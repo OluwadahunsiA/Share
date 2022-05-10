@@ -16,6 +16,7 @@ const movieSchema = new mongoose.Schema({
     type: Date,
     default: Date.now(),
   },
+  file: String,
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

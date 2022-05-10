@@ -8,7 +8,7 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../Actions/movieActions';
+import { closeModal, createMovie } from '../../Actions/movieActions';
 import FileBase from 'react-file-base64';
 
 // eslint-disable-next-line react/prop-types
@@ -29,6 +29,7 @@ const Form = ({ open }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    dispatch(createMovie(movie));
     setMovie({ title: '', description: '', tags: '', file: '' });
     dispatch(closeModal());
   };

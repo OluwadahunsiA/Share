@@ -1,9 +1,18 @@
 const Model = require('../Model/movieModel');
 
-exports.getAllMovies = (req, res) => {
-  res.status(200).json({
-    message: 'A request was made to this route',
-  });
+exports.getAllMovies = async (req, res) => {
+  try {
+    const data = await Model.find();
+
+    res.status(200).json({
+      status: 'success',
+      data,
+    });
+  } catch (err) {
+    res.json({
+      message: err.message,
+    });
+  }
 };
 
 exports.createMovie = async (req, res) => {
