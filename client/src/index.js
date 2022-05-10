@@ -1,5 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import * as ReactDOMClient from 'react-dom/client';
+// import ReactDOM from 'react-dom';
 import App from './App.jsx';
 import { legacy_createStore as createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -8,10 +9,12 @@ import reducer from './Reducers';
 import './index.css';
 
 const store = createStore(reducer, applyMiddleware(thunk));
+const container = document.getElementById('root');
+const root = ReactDOMClient.createRoot(container);
 
-ReactDOM.render(
+root.render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById('root')
+  </Provider>
 );
+

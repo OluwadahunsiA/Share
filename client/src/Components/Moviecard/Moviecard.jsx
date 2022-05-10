@@ -1,3 +1,4 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 
 import {
@@ -15,7 +16,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 import { useStyles } from './styles';
 
-const Moviecard = () => {
+const Moviecard = ({ movie }) => {
   const classes = useStyles();
 
   return (
@@ -27,9 +28,15 @@ const Moviecard = () => {
           </IconButton>
         }
       />
-      <CardMedia component='img' height='194' alt='movie image' image='' />
+      <CardMedia
+        component='img'
+        height='194'
+        alt='movie image'
+        image={movie.file}
+      />
       <CardContent>
-        <Typography>This is where the description of the movie goes</Typography>
+        <Typography>{movie.title}</Typography>
+        <Typography>{movie.description}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <IconButton>

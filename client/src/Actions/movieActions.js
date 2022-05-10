@@ -1,4 +1,9 @@
-import { OPEN_MODAL, CLOSE_MODAL } from '../ActionTypes';
+import {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  CREATE_MOVIE,
+  GET_ALL_MOVIES,
+} from '../ActionTypes';
 import api from '../Api';
 
 export const openModal = () => {
@@ -11,9 +16,24 @@ export const closeModal = () => {
 
 export const createMovie = (movie) => async (dispatch) => {
   try {
-    const result = await api.createMovie(movie);
-    console.log(result);
-    dispatch({});
+    const {
+      data: { data },
+    } = await api.createMovie(movie);
+
+    dispatch({ type: CREATE_MOVIE, payload: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getAllMovies = () => async (dispatch) => {
+  try {
+    const {
+      data: { data },
+    } = await api.getMovies();
+    
+
+    dispatch({ type: GET_ALL_MOVIES, payload: data });
   } catch (err) {
     console.log(err);
   }
