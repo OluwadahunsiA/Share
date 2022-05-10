@@ -13,6 +13,7 @@ import {
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteIcon from '@mui/icons-material/Delete';
+import defaultImage from '../../images/default.jpeg';
 
 import { useStyles } from './styles';
 
@@ -32,11 +33,11 @@ const Moviecard = ({ movie }) => {
         component='img'
         height='194'
         alt='movie image'
-        image={movie.file}
+        image={movie.file || defaultImage}
       />
       <CardContent>
-        <Typography>{movie.title}</Typography>
-        <Typography>{movie.description}</Typography>
+        <Typography variant='h5'>{movie.title}</Typography>
+        <Typography variant='p'>{movie.description}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <IconButton>

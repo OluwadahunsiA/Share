@@ -29,9 +29,14 @@ const Form = ({ open }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(createMovie(movie));
-    setMovie({ title: '', description: '', tags: '', file: '' });
-    dispatch(closeModal());
+    if (movie.title || movie.description || movie.tags || movie.file) {
+      dispatch(createMovie(movie));
+      setMovie({ title: '', description: '', tags: '', file: '' });
+      dispatch(closeModal());
+    } else {
+      dispatch(closeModal());
+      return;
+    }
   };
 
   const handleChange = (e) => {
