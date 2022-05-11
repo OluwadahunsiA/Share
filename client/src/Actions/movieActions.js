@@ -31,9 +31,19 @@ export const getAllMovies = () => async (dispatch) => {
     const {
       data: { data },
     } = await api.getMovies();
-    
 
     dispatch({ type: GET_ALL_MOVIES, payload: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getOneMovie = (id) => async (dispatch) => {
+  try {
+    const data = api.getMovieById(id);
+    console.log(data);
+
+    dispatch({ type: 'GET_ONE_MOVIE' });
   } catch (err) {
     console.log(err);
   }

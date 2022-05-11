@@ -14,22 +14,26 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import DeleteIcon from '@mui/icons-material/Delete';
 import defaultImage from '../../images/default.jpeg';
-
+import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
+
+import { getOneMovie } from '../../Actions/movieActions';
 
 const Moviecard = ({ movie }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
-  const handleMoreClick = (id) => {
+  const handleEditClick = (id) => {
     console.log('clicked more');
     console.log(id);
+    dispatch(getOneMovie(id));
   };
 
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         action={
-          <IconButton onClick={() => handleMoreClick(movie?._id)}>
+          <IconButton onClick={() => handleEditClick(movie?._id)}>
             <MoreHorizIcon />
           </IconButton>
         }
