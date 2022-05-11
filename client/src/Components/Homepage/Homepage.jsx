@@ -13,20 +13,19 @@ const Homepage = () => {
   const classes = useStyles();
 
   const {
-    movieReducer: { openModal, movies, editMovie },
+    movieReducer: { openModal, movies },
   } = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  console.log(movies);
 
   useEffect(() => {
     console.log('useEffect');
     // dispatch(getAllMovies());
 
-    if (movies.length === 0 ) {
+    if (movies.length === 0) {
       dispatch(getAllMovies());
     }
-  }, [editMovie]);
+  }, []);
 
   return (
     <Box className={classes.gridContainer}>

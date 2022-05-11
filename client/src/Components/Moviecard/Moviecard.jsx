@@ -24,8 +24,6 @@ const Moviecard = ({ movie }) => {
   const dispatch = useDispatch();
 
   const handleEditClick = (id) => {
-    console.log('clicked more');
-    console.log(id);
     dispatch(getOneMovie(id));
   };
 

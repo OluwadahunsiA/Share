@@ -57,8 +57,7 @@ export const editOneMovie = (id, body) => async (dispatch) => {
     const {
       data: { data },
     } = await api.editOneMovie(id, body);
-
-    dispatch({ type: EDIT_ONE, payload: data, });
+    dispatch({ type: EDIT_ONE, payload: data });
   } catch (err) {
     console.log(err);
   }

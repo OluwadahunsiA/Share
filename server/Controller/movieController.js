@@ -52,7 +52,7 @@ exports.patchOneMovie = async (req, res) => {
   const body = req.body;
 
   try {
-    const data = await Model.findByIdAndUpdate(id, body);
+    const data = await Model.findByIdAndUpdate(id, body, { new: true });
     res.status(200).json({ status: 'success', data });
   } catch (err) {
     res.json({
