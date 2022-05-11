@@ -40,10 +40,11 @@ export const getAllMovies = () => async (dispatch) => {
 
 export const getOneMovie = (id) => async (dispatch) => {
   try {
-    const data = api.getMovieById(id);
-    console.log(data);
+    const {
+      data: { data },
+    } = await api.getMovieById(id);
 
-    dispatch({ type: 'GET_ONE_MOVIE' });
+    dispatch({ type: 'GET_ONE_MOVIE', payload: data });
   } catch (err) {
     console.log(err);
   }

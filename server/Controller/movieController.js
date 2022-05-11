@@ -28,3 +28,21 @@ exports.createMovie = async (req, res) => {
     });
   }
 };
+
+exports.getOneMovie = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const data = await Model.findById({ _id: id });
+
+    res.status(200).json({
+      status: 'success',
+      data,
+    });
+  } catch (err) {
+    res.json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};
