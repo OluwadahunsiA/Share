@@ -20,11 +20,16 @@ import { useStyles } from './styles';
 const Moviecard = ({ movie }) => {
   const classes = useStyles();
 
+  const handleMoreClick = (id) => {
+    console.log('clicked more');
+    console.log(id);
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         action={
-          <IconButton>
+          <IconButton onClick={() => handleMoreClick(movie?._id)}>
             <MoreHorizIcon />
           </IconButton>
         }
@@ -33,11 +38,11 @@ const Moviecard = ({ movie }) => {
         component='img'
         height='194'
         alt='movie image'
-        image={movie.file || defaultImage}
+        image={movie?.file || defaultImage}
       />
       <CardContent>
-        <Typography variant='h5'>{movie.title}</Typography>
-        <Typography variant='p'>{movie.description}</Typography>
+        <Typography variant='h5'>{movie?.title}</Typography>
+        <Typography variant='p'>{movie?.description}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <IconButton>
