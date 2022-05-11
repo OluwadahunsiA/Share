@@ -8,7 +8,11 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import { closeModal, createMovie } from '../../Actions/movieActions';
+import {
+  closeModal,
+  createMovie,
+  editOneMovie,
+} from '../../Actions/movieActions';
 import FileBase from 'react-file-base64';
 import { useSelector } from 'react-redux';
 
@@ -45,7 +49,9 @@ const Form = ({ open }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if (movie.title || movie.description || movie.tags || movie.file) {
-      dispatch(createMovie(movie));
+      !editMovie
+        ? dispatch(createMovie(movie))
+        : dispatch(editOneMovie(editMovie._id, movie));
       setMovie({ title: '', description: '', tags: '', file: '' });
       dispatch(closeModal());
     } else {

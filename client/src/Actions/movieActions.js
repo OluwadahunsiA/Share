@@ -4,6 +4,7 @@ import {
   CREATE_MOVIE,
   GET_ALL_MOVIES,
   GET_ONE_MOVIE,
+  EDIT_ONE,
 } from '../ActionTypes';
 import api from '../Api';
 
@@ -46,6 +47,18 @@ export const getOneMovie = (id) => async (dispatch) => {
     } = await api.getMovieById(id);
 
     dispatch({ type: GET_ONE_MOVIE, payload: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const editOneMovie = (id, body) => async (dispatch) => {
+  try {
+    const {
+      data: { data },
+    } = await api.editOneMovie(id, body);
+
+    dispatch({ type: EDIT_ONE, payload: data, });
   } catch (err) {
     console.log(err);
   }

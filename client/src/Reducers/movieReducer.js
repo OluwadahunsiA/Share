@@ -4,6 +4,7 @@ import {
   CREATE_MOVIE,
   GET_ALL_MOVIES,
   GET_ONE_MOVIE,
+  EDIT_ONE,
 } from '../ActionTypes';
 
 const initialState = {
@@ -31,6 +32,18 @@ const movieReducer = (state = initialState, action) => {
         ...state,
         openModal: true,
         editMovie: action.payload,
+      };
+    case EDIT_ONE:
+      return {
+        ...state,
+        editMovie: null,
+        movies: state.movies.map((movie) => {
+          if (movie._id !== action.payload._id) {
+            return movie;
+          } else {
+            return action.payload;
+          }
+        }),
       };
     default:
       return state;

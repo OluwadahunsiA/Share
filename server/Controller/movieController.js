@@ -46,3 +46,18 @@ exports.getOneMovie = async (req, res) => {
     });
   }
 };
+
+exports.patchOneMovie = async (req, res) => {
+  const { id } = req.params;
+  const body = req.body;
+
+  try {
+    const data = await Model.findByIdAndUpdate(id, body);
+    res.status(200).json({ status: 'success', data });
+  } catch (err) {
+    res.json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};

@@ -10,6 +10,7 @@ const api = {
   getMovies: () => API.get('/movies'),
   createMovie: (body) => API.post('/movies', body),
   getMovieById: (id) => API.get(`/movies/${id}`),
+  editOneMovie: (id,body) => API.patch(`/movies/${id}`, body),
 };
 
 export default api;
