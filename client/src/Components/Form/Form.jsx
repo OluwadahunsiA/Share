@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import { Typography } from '@mui/material';
 import Paper from '@mui/material/Paper';
@@ -10,6 +10,7 @@ import { IconButton, Button } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { closeModal, createMovie } from '../../Actions/movieActions';
 import FileBase from 'react-file-base64';
+import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
 const Form = ({ open }) => {
@@ -21,6 +22,20 @@ const Form = ({ open }) => {
     tags: '',
     file: '',
   });
+  const { editMovie, openModal } = useSelector((state) => state.movieReducer);
+
+  useEffect(() => {
+    if (editMovie) {
+      setMovie({
+        title: editMovie.title,
+        description: editMovie.description,
+        tags: editMovie.tags,
+        file: editMovie.file,
+      });
+    } else {
+      return;
+    }
+  }, [editMovie]);
 
   const handleFormClose = () => {
     dispatch(closeModal());
@@ -45,7 +60,7 @@ const Form = ({ open }) => {
     }
   };
   return (
-    <Modal open={open}>
+    <Modal open={open || openModal}>
       <form className={classes.formStyle}>
         <Box className={classes.formBox}>
           <Paper elevation={5} className={classes.formPaper}>

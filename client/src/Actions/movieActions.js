@@ -3,6 +3,7 @@ import {
   CLOSE_MODAL,
   CREATE_MOVIE,
   GET_ALL_MOVIES,
+  GET_ONE_MOVIE,
 } from '../ActionTypes';
 import api from '../Api';
 
@@ -44,7 +45,7 @@ export const getOneMovie = (id) => async (dispatch) => {
       data: { data },
     } = await api.getMovieById(id);
 
-    dispatch({ type: 'GET_ONE_MOVIE', payload: data });
+    dispatch({ type: GET_ONE_MOVIE, payload: data });
   } catch (err) {
     console.log(err);
   }
