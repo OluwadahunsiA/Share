@@ -51,6 +51,9 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: state.movies.map((movie) => {
+          console.log(movie._id, action.payload._id);
+
+          
           if (movie._id !== action.payload._id) {
             return movie;
           } else {

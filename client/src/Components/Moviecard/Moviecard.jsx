@@ -52,9 +52,15 @@ const Moviecard = ({ movie }) => {
         <Typography variant='p'>{movie?.description}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <IconButton onClick={() => handleMovieLike(movie?._id)}>
-          <FavoriteIcon />
-        </IconButton>
+        <div>
+          <IconButton onClick={() => handleMovieLike(movie?._id)}>
+            <FavoriteIcon style={movie?.likes.length ? { color: 'red' } : {}} />
+          </IconButton>
+          <Typography>{`${movie?.likes.length} like${
+            movie?.likes.length > 1 ? 's' : ''
+          }`}</Typography>
+        </div>
+
         <IconButton>
           <DeleteIcon />
         </IconButton>

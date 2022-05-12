@@ -71,7 +71,7 @@ export const likeMovie = (id, body) => async (dispatch) => {
       data: { data },
     } = await api.likeOneMovie(id, body);
 
-    dispatch({ type: LIKE_ONE, data: data });
+    dispatch({ type: LIKE_ONE, payload: data });
   } catch (err) {
     console.log(err);
   }
