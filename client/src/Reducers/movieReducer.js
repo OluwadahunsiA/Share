@@ -5,6 +5,7 @@ import {
   GET_ALL_MOVIES,
   GET_ONE_MOVIE,
   EDIT_ONE,
+  LIKE_ONE,
 } from '../ActionTypes';
 
 const initialState = {
@@ -45,6 +46,19 @@ const movieReducer = (state = initialState, action) => {
           }
         }),
       };
+
+    case LIKE_ONE:
+      return {
+        ...state,
+        movies: state.movies.map((movie) => {
+          if (movie._id !== action.payload._id) {
+            return movie;
+          } else {
+            return action.payload;
+          }
+        }),
+      };
+
     default:
       return state;
   }

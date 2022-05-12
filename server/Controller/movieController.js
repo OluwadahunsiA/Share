@@ -61,3 +61,25 @@ exports.patchOneMovie = async (req, res) => {
     });
   }
 };
+
+exports.likeOneMovie = async (req, res) => {
+  const { id } = req.params;
+  const user = req.body.id;
+  try {
+    const data = await Model.findById({ _id: id });
+
+    data.likes.push(user);
+
+    const updatedLikes = await Model.findByIdAndUpdate(id, data, { new: true });
+
+    res.status(200).json({
+      status: 'success',
+      data: updatedLikes,
+    });
+  } catch (err) {
+    res.json({
+      status: 'fail',
+      err: err.message,
+    });
+  }
+};

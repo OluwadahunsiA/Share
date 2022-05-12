@@ -5,6 +5,7 @@ import {
   GET_ALL_MOVIES,
   GET_ONE_MOVIE,
   EDIT_ONE,
+  LIKE_ONE,
 } from '../ActionTypes';
 import api from '../Api';
 
@@ -57,7 +58,20 @@ export const editOneMovie = (id, body) => async (dispatch) => {
     const {
       data: { data },
     } = await api.editOneMovie(id, body);
+
     dispatch({ type: EDIT_ONE, payload: data });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const likeMovie = (id, body) => async (dispatch) => {
+  try {
+    const {
+      data: { data },
+    } = await api.likeOneMovie(id, body);
+
+    dispatch({ type: LIKE_ONE, data: data });
   } catch (err) {
     console.log(err);
   }

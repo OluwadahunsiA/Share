@@ -17,6 +17,7 @@ const movieSchema = new mongoose.Schema({
     default: Date.now(),
   },
   file: String,
+  likes: [String],
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
