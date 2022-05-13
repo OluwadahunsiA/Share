@@ -6,6 +6,7 @@ import {
   GET_ONE_MOVIE,
   EDIT_ONE,
   LIKE_ONE,
+  DELETE_ONE_MOVIE,
 } from '../ActionTypes';
 
 const initialState = {
@@ -51,15 +52,17 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: state.movies.map((movie) => {
-          console.log(movie._id, action.payload._id);
-
-          
           if (movie._id !== action.payload._id) {
             return movie;
           } else {
             return action.payload;
           }
         }),
+      };
+    case DELETE_ONE_MOVIE:
+      return {
+        ...state,
+        movies: state.movies.filter((movie) => movie._id !== action.payload.id),
       };
 
     default:

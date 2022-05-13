@@ -12,6 +12,7 @@ const api = {
   getMovieById: (id) => API.get(`/movies/${id}`),
   editOneMovie: (id, body) => API.patch(`/movies/${id}`, body),
   likeOneMovie: (id, body) => API.patch(`/movies/like/${id}`, body),
+  deleteOneMovie: (id) => API.delete(`/movies/${id}`),
 };
 
 export default api;

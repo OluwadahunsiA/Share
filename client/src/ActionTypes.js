@@ -5,3 +5,4 @@ export const GET_ALL_MOVIES = 'GET_ALL_MOVIES';
 export const GET_ONE_MOVIE = 'GET_ONE_MOVIE';
 export const EDIT_ONE = 'EDIT_ONE';
 export const LIKE_ONE = 'LIKE_ONE';
+export const DELETE_ONE_MOVIE = 'DELETE_ONE_MOVIE';

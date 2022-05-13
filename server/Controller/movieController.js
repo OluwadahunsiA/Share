@@ -83,3 +83,16 @@ exports.likeOneMovie = async (req, res) => {
     });
   }
 };
+
+exports.deleteOneMovie = async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Model.findByIdAndDelete(id);
+    res.status(200).json({ status: 'success' });
+  } catch (err) {
+    res.json({
+      status: 'fail',
+      message: err.message,
+    });
+  }
+};

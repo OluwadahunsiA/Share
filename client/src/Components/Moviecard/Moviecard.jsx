@@ -17,7 +17,11 @@ import defaultImage from '../../images/default.jpeg';
 import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
 
-import { getOneMovie, likeMovie } from '../../Actions/movieActions';
+import {
+  getOneMovie,
+  likeMovie,
+  deleteMovie,
+} from '../../Actions/movieActions';
 
 const Moviecard = ({ movie }) => {
   const classes = useStyles();
@@ -28,8 +32,11 @@ const Moviecard = ({ movie }) => {
   };
 
   const handleMovieLike = (id) => {
-    console.log(`You liked the movie ${id}`);
     dispatch(likeMovie(id, { id: 'Olorunsogo' }));
+  };
+
+  const handleMovieDelete = (id) => {
+    dispatch(deleteMovie(id));
   };
 
   return (
@@ -61,7 +68,7 @@ const Moviecard = ({ movie }) => {
           }`}</Typography>
         </div>
 
-        <IconButton>
+        <IconButton onClick={() => handleMovieDelete(movie?._id)}>
           <DeleteIcon />
         </IconButton>
       </CardActions>
