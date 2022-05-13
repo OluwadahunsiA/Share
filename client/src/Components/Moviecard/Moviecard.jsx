@@ -55,8 +55,28 @@ const Moviecard = ({ movie }) => {
         image={movie?.file || defaultImage}
       />
       <CardContent>
-        <Typography variant='h5'>{movie?.title}</Typography>
-        <Typography variant='p'>{movie?.description}</Typography>
+        <Typography
+          variant='h5'
+          noWrap={true}
+          style={{ width: 'maxWidth' }}
+          gutterBottom
+          sx={{
+            width: '90%',
+            display: 'inline-block',
+          }}
+        >
+          {movie?.title}
+        </Typography>
+        <Typography
+          variant='p'
+          noWrap={true}
+          sx={{
+            width: '90%',
+            display: 'inline-block',
+          }}
+        >
+          {movie?.description}
+        </Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
         <div>
