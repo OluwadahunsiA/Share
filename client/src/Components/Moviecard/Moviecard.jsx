@@ -17,6 +17,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import defaultImage from '../../images/default.jpeg';
 import { useDispatch } from 'react-redux';
 import { useStyles } from './styles';
+import { useNavigate } from 'react-router-dom';
 
 import {
   getOneMovie,
@@ -28,6 +29,7 @@ import {
 const Moviecard = ({ movie }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleEditClick = (id) => {
     dispatch(getOneMovie(id));
@@ -42,8 +44,9 @@ const Moviecard = ({ movie }) => {
   };
 
   const handleCardClick = (id) => {
-    console.log(id);
+  
     dispatch(showMovieDetail(id));
+    navigate(`/movie/${id}`);
   };
 
   return (

@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const MovieDetail = () => {
   const { selectedMovie } = useSelector((state) => state.movieReducer);
-  console.log(selectedMovie[0]);
 
   return (
     <Container>
