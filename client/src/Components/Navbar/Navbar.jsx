@@ -18,6 +18,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import AddCirlceOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
 import { openModal } from '../../Actions/movieActions';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -32,12 +33,17 @@ const Navbar = () => {
       <Box>
         <AppBar position='static'>
           <Toolbar>
-            <Typography variant='h6' sx={{ flexGrow: 1 }}>
-              Share
-              <IconButton onClick={handleIconClick}>
-                <AddCirlceOutlineIcon />
-              </IconButton>
-            </Typography>
+            <Link
+              to='/'
+              style={{ textDecoration: 'none', color: 'grey', flexGrow: 1 }}
+            >
+              <Typography variant='h6'>
+                Share
+                <IconButton onClick={handleIconClick}>
+                  <AddCirlceOutlineIcon />
+                </IconButton>
+              </Typography>
+            </Link>
 
             <Box className={classes.boxStyle}>
               <Grid item xs={3} className={classes.gridStyle}>
