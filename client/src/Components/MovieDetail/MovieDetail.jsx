@@ -24,7 +24,7 @@ const MovieDetail = () => {
           ></Box>
         </Grid>
 
-        <Grid item xs={7} sx={{ border: '2px solid brown' }}>
+        <Grid item xs={7}>
           <Typography gutterBottom variant='h5'>
             Title: {selectedMovie[0]?.title}
           </Typography>
@@ -43,7 +43,13 @@ const MovieDetail = () => {
             Likes: {selectedMovie[0]?.likes.length}
           </Typography>
 
-          <Typography>tags</Typography>
+          <Typography>
+            tags:{' '}
+            {selectedMovie[0]?.tags
+              ?.join(' ')
+              .split(' ')
+              ?.map((tag) => ` #${tag}`)}
+          </Typography>
         </Grid>
       </Grid>
     </Container>
