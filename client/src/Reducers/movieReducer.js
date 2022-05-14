@@ -7,12 +7,14 @@ import {
   EDIT_ONE,
   LIKE_ONE,
   DELETE_ONE_MOVIE,
+  SHOW_MOVIE_DETAIL,
 } from '../ActionTypes';
 
 const initialState = {
   openModal: false,
   editMovie: null,
   movies: [],
+  selectedMovie: [],
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -63,6 +65,13 @@ const movieReducer = (state = initialState, action) => {
       return {
         ...state,
         movies: state.movies.filter((movie) => movie._id !== action.payload),
+      };
+    case SHOW_MOVIE_DETAIL:
+      return {
+        ...state,
+        selectedMovie: state.movies.filter(
+          (movie) => movie._id === action.payload
+        ),
       };
 
     default:

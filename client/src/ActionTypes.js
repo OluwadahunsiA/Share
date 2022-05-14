@@ -6,3 +6,4 @@ export const GET_ONE_MOVIE = 'GET_ONE_MOVIE';
 export const EDIT_ONE = 'EDIT_ONE';
 export const LIKE_ONE = 'LIKE_ONE';
 export const DELETE_ONE_MOVIE = 'DELETE_ONE_MOVIE';
+export const SHOW_MOVIE_DETAIL = 'SHOW_MOVIE_DETAIL';

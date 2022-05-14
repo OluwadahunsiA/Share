@@ -16,9 +16,9 @@ const Homepage = () => {
     movieReducer: { openModal, movies },
   } = useSelector((state) => state);
   const dispatch = useDispatch();
-  console.log('reloaded');
+ 
 
-  console.log(movies);
+ 
 
   useEffect(() => {
 

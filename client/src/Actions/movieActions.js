@@ -7,6 +7,7 @@ import {
   EDIT_ONE,
   LIKE_ONE,
   DELETE_ONE_MOVIE,
+  SHOW_MOVIE_DETAIL,
 } from '../ActionTypes';
 import api from '../Api';
 
@@ -85,4 +86,8 @@ export const deleteMovie = (id) => async (dispatch) => {
   } catch (err) {
     console.log(err);
   }
+};
+
+export const showMovieDetail = (id) => {
+  return { type: SHOW_MOVIE_DETAIL, payload: id };
 };

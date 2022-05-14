@@ -9,6 +9,7 @@ import {
   CardActions,
   CardContent,
   IconButton,
+  CardActionArea,
 } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
 import FavoriteIcon from '@mui/icons-material/Favorite';
@@ -21,6 +22,7 @@ import {
   getOneMovie,
   likeMovie,
   deleteMovie,
+  showMovieDetail,
 } from '../../Actions/movieActions';
 
 const Moviecard = ({ movie }) => {
@@ -39,6 +41,11 @@ const Moviecard = ({ movie }) => {
     dispatch(deleteMovie(id));
   };
 
+  const handleCardClick = (id) => {
+    console.log(id);
+    dispatch(showMovieDetail(id));
+  };
+
   return (
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
@@ -48,36 +55,38 @@ const Moviecard = ({ movie }) => {
           </IconButton>
         }
       />
-      <CardMedia
-        component='img'
-        height='194'
-        alt='movie image'
-        image={movie?.file || defaultImage}
-      />
-      <CardContent>
-        <Typography
-          variant='h5'
-          noWrap={true}
-          style={{ width: 'maxWidth' }}
-          gutterBottom
-          sx={{
-            width: '90%',
-            display: 'inline-block',
-          }}
-        >
-          {movie?.title}
-        </Typography>
-        <Typography
-          variant='p'
-          noWrap={true}
-          sx={{
-            width: '90%',
-            display: 'inline-block',
-          }}
-        >
-          {movie?.description}
-        </Typography>
-      </CardContent>
+      <CardActionArea onClick={() => handleCardClick(movie?._id)}>
+        <CardMedia
+          component='img'
+          height='194'
+          alt='movie image'
+          image={movie?.file || defaultImage}
+        />
+        <CardContent>
+          <Typography
+            variant='h5'
+            noWrap={true}
+            style={{ width: 'maxWidth' }}
+            gutterBottom
+            sx={{
+              width: '90%',
+              display: 'inline-block',
+            }}
+          >
+            {movie?.title}
+          </Typography>
+          <Typography
+            variant='p'
+            noWrap={true}
+            sx={{
+              width: '90%',
+              display: 'inline-block',
+            }}
+          >
+            {movie?.description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
       <CardActions className={classes.cardActions}>
         <div>
           <IconButton onClick={() => handleMovieLike(movie?._id)}>
