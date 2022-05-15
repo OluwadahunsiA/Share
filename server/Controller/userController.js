@@ -1,6 +1,6 @@
 const User = require('../Model/userModel');
 
-exports.loginUser = (req, res) => {
+exports.signUpUser = (req, res) => {
   console.log(req.body);
   try {
     res.status(200).json({
@@ -15,7 +15,7 @@ exports.loginUser = (req, res) => {
   }
 };
 
-exports.signUpUser = (req, res) => {
+exports.loginUser = (req, res) => {
   console.log(req.body);
   try {
     res.status(200).json({

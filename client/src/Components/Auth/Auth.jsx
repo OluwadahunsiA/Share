@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
@@ -7,70 +7,40 @@ import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
 import { IconButton, Button, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
-import {
-  closeModal,
-  createMovie,
-  editOneMovie,
-} from '../../Actions/movieActions';
-import FileBase from 'react-file-base64';
-import { useSelector } from 'react-redux';
+import { closeModal } from '../../Actions/movieActions';
+
+// import { useSelector } from 'react-redux';
 
 // eslint-disable-next-line react/prop-types
-const Form = ({ open }) => {
+const Auth = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const [movie, setMovie] = useState({
-    title: '',
-    description: '',
-    tags: '',
-    file: '',
+  const [user, setUser] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
   });
-  const { editMovie, openModal } = useSelector((state) => state.movieReducer);
-
-  useEffect(() => {
-    if (editMovie) {
-      setMovie({
-        title: editMovie.title,
-        description: editMovie.description,
-        tags: editMovie.tags,
-        file: editMovie.file,
-      });
-    } else {
-      return;
-    }
-  }, [editMovie]);
 
   const handleFormClose = () => {
     dispatch(closeModal());
-    setMovie({ title: '', description: '', tags: '', file: '' });
+    setUser({ username: '', email: '', password: '', confirmPassword: '' });
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    if (movie.title || movie.description || movie.tags || movie.file) {
-      !editMovie
-        ? dispatch(createMovie(movie))
-        : dispatch(editOneMovie(editMovie._id, movie));
-      setMovie({ title: '', description: '', tags: '', file: '' });
-      dispatch(closeModal());
-    } else {
-      dispatch(closeModal());
-      return;
-    }
-  };
+  const handleFormSubmit = () => {};
 
   const handleChange = (e) => {
-    if (e.target.name !== 'file') {
-      setMovie({ ...movie, [e.target.name]: e.target.value });
-    }
+    console.log(e.target.name, e.target.value);
+
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <Modal open={open || openModal}>
+    <Modal open={true}>
       <form className={classes.formStyle}>
         <Box className={classes.formBox}>
           <Paper elevation={5} className={classes.formPaper}>
             <Typography className={classes.formText}>
-              Create A New Movie
+              Login or Sign Up
             </Typography>
 
             <IconButton
@@ -86,9 +56,9 @@ const Form = ({ open }) => {
 
             <TextField
               className={classes.formField}
-              label='Title'
-              name='title'
-              value={movie.title}
+              label='Username'
+              name='username'
+              value={user.username}
               margin='normal'
               required
               focused
@@ -96,9 +66,9 @@ const Form = ({ open }) => {
             ></TextField>
             <TextField
               className={classes.formField}
-              label='Description'
-              name='description'
-              value={movie.description}
+              label='Email'
+              name='email'
+              value={user.email}
               margin='normal'
               focused={false}
               required
@@ -106,27 +76,32 @@ const Form = ({ open }) => {
             ></TextField>
             <TextField
               className={classes.formField}
-              value={movie.tags}
-              label='Tags'
-              name='tags'
+              value={user.password}
+              label='Password'
+              name='password'
+              margin='normal'
+              focused={false}
+              required
+              onChange={handleChange}
+            ></TextField>
+            <TextField
+              className={classes.formField}
+              value={user.password}
+              label='Confirm Password'
+              name='confirmPassword'
               margin='normal'
               focused={false}
               required
               onChange={handleChange}
             ></TextField>
 
-            <FileBase
-              type='file'
-              multiple={false}
-              onDone={({ base64 }) => setMovie({ ...movie, file: base64 })}
-            />
-
             <Button
+              sx={{ marginTop: '10px' }}
               variant='contained'
               color='inherit'
               onClick={handleFormSubmit}
             >
-              Add
+              Login or Sign Up
             </Button>
           </Paper>
         </Box>
@@ -135,4 +110,4 @@ const Form = ({ open }) => {
   );
 };
 
-export default Form;
+export default Auth;
