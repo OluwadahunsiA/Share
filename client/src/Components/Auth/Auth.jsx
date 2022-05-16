@@ -18,9 +18,9 @@ import {
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../Actions/movieActions';
 
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { switchLoginModal } from '../../Actions/movieActions';
 
 // eslint-disable-next-line react/prop-types
 const Auth = () => {
@@ -28,6 +28,8 @@ const Auth = () => {
   const dispatch = useDispatch();
   const [isSignUp, setIsSignUp] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const { loginModal } = useSelector((state) => state.movieReducer);
+
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -35,10 +37,9 @@ const Auth = () => {
     confirmPassword: '',
   });
 
-  console.log(user);
-
   const handleFormClose = () => {
-    dispatch(closeModal());
+    console.log('clicked');
+    dispatch(switchLoginModal());
   };
 
   const handleFormSubmit = () => {};
@@ -49,7 +50,7 @@ const Auth = () => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
-    <Modal open={true}>
+    <Modal open={loginModal}>
       <form className={classes.formStyle}>
         <Box className={classes.formBox}>
           <Paper elevation={5} className={classes.formPaper}>

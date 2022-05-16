@@ -8,6 +8,7 @@ import {
   LIKE_ONE,
   DELETE_ONE_MOVIE,
   SHOW_MOVIE_DETAIL,
+  LOGIN_MODAL,
 } from '../ActionTypes';
 import api from '../Api';
 
@@ -90,4 +91,8 @@ export const deleteMovie = (id) => async (dispatch) => {
 
 export const showMovieDetail = (id) => {
   return { type: SHOW_MOVIE_DETAIL, payload: id };
+};
+
+export const switchLoginModal = () => {
+  return { type: LOGIN_MODAL };
 };

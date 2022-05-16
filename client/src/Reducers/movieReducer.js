@@ -8,10 +8,12 @@ import {
   LIKE_ONE,
   DELETE_ONE_MOVIE,
   SHOW_MOVIE_DETAIL,
+  LOGIN_MODAL,
 } from '../ActionTypes';
 
 const initialState = {
   openModal: false,
+  loginModal: true,
   editMovie: null,
   movies: [],
   selectedMovie: [],
@@ -19,6 +21,9 @@ const initialState = {
 
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
+    case LOGIN_MODAL:
+      console.log(state.loginModal);
+      return { ...state, loginModal: !state.loginModal };
     case OPEN_MODAL:
       return { ...state, openModal: true };
 
