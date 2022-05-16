@@ -38,7 +38,8 @@ exports.signUpUser = async (req, res) => {
 
       res.status(200).json({
         status: 'success',
-        data: token,
+        token: token,
+        user: newUser,
       });
     } else {
       return res.json({
@@ -55,13 +56,42 @@ exports.signUpUser = async (req, res) => {
   }
 };
 
-exports.loginUser = (req, res) => {
-  console.log(req.body);
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
   try {
-    res.status(200).json({
-      status: 'success',
-      message: 'success',
-    });
+    // check to see if user exists
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.json({
+        status: 'fail',
+        message: 'This user does not exist',
+      });
+    }
+
+    // if user exists, verify password.
+    const verifyPassword = await bcrypt.compare(password, user.password);
+
+    // generate token if the password is correct
+
+    if (verifyPassword) {
+      const token = jwt.sign(
+        { email: user.email, id: user._id },
+        process.env.SECRET,
+        { expiresIn: '1h' }
+      );
+
+      res.status(200).json({
+        status: 'success',
+        token,
+      });
+    } else {
+      return res.json({
+        status: 'fail',
+        message: 'Incorrect login details',
+      });
+    }
   } catch (err) {
     res.json({
       status: 'fail',
