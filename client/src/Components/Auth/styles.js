@@ -32,4 +32,7 @@ export const useStyles = makeStyles({
   inputField: {
     marginTop: '40px',
   },
+  link: {
+    cursor: 'pointer',
+  },
 });

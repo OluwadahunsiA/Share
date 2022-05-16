@@ -5,7 +5,18 @@ import Box from '@mui/material/Box';
 import { useStyles } from './styles';
 import Modal from '@mui/material/Modal';
 import CloseIcon from '@mui/icons-material/Close';
-import { IconButton, Button, Typography } from '@mui/material';
+import {
+  IconButton,
+  Button,
+  Typography,
+  Link,
+  FormControl,
+  InputLabel,
+  OutlinedInput,
+  InputAdornment,
+} from '@mui/material';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../Actions/movieActions';
 
@@ -15,6 +26,8 @@ import { closeModal } from '../../Actions/movieActions';
 const Auth = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [isSignUp, setIsSignUp] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [user, setUser] = useState({
     username: '',
     email: '',
@@ -22,9 +35,10 @@ const Auth = () => {
     confirmPassword: '',
   });
 
+  console.log(user);
+
   const handleFormClose = () => {
     dispatch(closeModal());
-    setUser({ username: '', email: '', password: '', confirmPassword: '' });
   };
 
   const handleFormSubmit = () => {};
@@ -40,7 +54,7 @@ const Auth = () => {
         <Box className={classes.formBox}>
           <Paper elevation={5} className={classes.formPaper}>
             <Typography className={classes.formText}>
-              Login or Sign Up
+              {isSignUp ? 'Sign Up' : 'Login'}
             </Typography>
 
             <IconButton
@@ -54,16 +68,18 @@ const Auth = () => {
               <CloseIcon />
             </IconButton>
 
-            <TextField
-              className={classes.formField}
-              label='Username'
-              name='username'
-              value={user.username}
-              margin='normal'
-              required
-              focused
-              onChange={handleChange}
-            ></TextField>
+            {isSignUp && (
+              <TextField
+                className={classes.formField}
+                label='Username'
+                name='username'
+                value={user.username}
+                margin='normal'
+                required
+                focused
+                onChange={handleChange}
+              ></TextField>
+            )}
             <TextField
               className={classes.formField}
               label='Email'
@@ -74,26 +90,49 @@ const Auth = () => {
               required
               onChange={handleChange}
             ></TextField>
-            <TextField
-              className={classes.formField}
-              value={user.password}
-              label='Password'
-              name='password'
-              margin='normal'
-              focused={false}
-              required
-              onChange={handleChange}
-            ></TextField>
-            <TextField
-              className={classes.formField}
-              value={user.password}
-              label='Confirm Password'
-              name='confirmPassword'
-              margin='normal'
-              focused={false}
-              required
-              onChange={handleChange}
-            ></TextField>
+            <FormControl sx={{ m: 1, width: '100%', right: '7px' }}>
+              <InputLabel htmlFor='password'>Password</InputLabel>
+              <OutlinedInput
+                id='password'
+                name='password'
+                onChange={handleChange}
+                type={showPassword ? 'text' : 'password'}
+                endAdornment={
+                  <InputAdornment position='end'>
+                    <IconButton
+                      edge='end'
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                label='password'
+              ></OutlinedInput>
+            </FormControl>
+
+            {isSignUp && (
+              <FormControl sx={{ m: 1, width: '100%', right: '7px' }}>
+                <InputLabel htmlFor='password'>Confirm Password</InputLabel>
+                <OutlinedInput
+                  id='confirmPassword'
+                  name='confirmPassword'
+                  onChange={handleChange}
+                  type={showPassword ? 'text' : 'password'}
+                  endAdornment={
+                    <InputAdornment position='end'>
+                      <IconButton
+                        edge='end'
+                        onClick={() => setShowPassword(!showPassword)}
+                      >
+                        {showPassword ? <VisibilityOff /> : <Visibility />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  label='Confirm password'
+                ></OutlinedInput>
+              </FormControl>
+            )}
 
             <Button
               sx={{ marginTop: '10px' }}
@@ -101,8 +140,18 @@ const Auth = () => {
               color='inherit'
               onClick={handleFormSubmit}
             >
-              Login or Sign Up
+              {isSignUp ? 'Sign Up' : 'Login'}
             </Button>
+            <Typography sx={{ marginTop: '25px' }}>
+              {isSignUp ? 'If you already have an account' : 'If you are new '}
+              <Link
+                className={classes.link}
+                onClick={() => setIsSignUp((prev) => !prev)}
+              >
+                {' '}
+                {isSignUp ? 'Login' : 'Sign Up'}
+              </Link>{' '}
+            </Typography>
           </Paper>
         </Box>
       </form>
