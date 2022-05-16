@@ -17,7 +17,7 @@ import { useStyles, theme } from './styles';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCirlceOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../Actions/movieActions';
+import { openModal, switchLoginModal } from '../../Actions/movieActions';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -58,7 +58,7 @@ const Navbar = () => {
 
             <Typography className={classes.userName}>Name</Typography>
             <Avatar className={classes.image} alt='user image' />
-            <Button>Login</Button>
+            <Button onClick={() => dispatch(switchLoginModal())}>Login</Button>
           </Toolbar>
         </AppBar>
       </Box>

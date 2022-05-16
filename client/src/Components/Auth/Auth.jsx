@@ -21,6 +21,7 @@ import { useDispatch } from 'react-redux';
 
 import { useSelector } from 'react-redux';
 import { switchLoginModal } from '../../Actions/movieActions';
+import { signupuser, signinuser } from '../../Actions/userActions';
 
 // eslint-disable-next-line react/prop-types
 const Auth = () => {
@@ -38,15 +39,20 @@ const Auth = () => {
   });
 
   const handleFormClose = () => {
-    console.log('clicked');
     dispatch(switchLoginModal());
   };
 
-  const handleFormSubmit = () => {};
+  const handleFormSubmit = () => {
+    dispatch(signinuser(user));
+  };
+
+  const handleSignUpSubmit = () => {
+    if (user.username && user.email && user.password && user.confirmPassword) {
+      dispatch(signupuser(user));
+    }
+  };
 
   const handleChange = (e) => {
-    console.log(e.target.name, e.target.value);
-
     setUser({ ...user, [e.target.name]: e.target.value });
   };
   return (
@@ -139,7 +145,7 @@ const Auth = () => {
               sx={{ marginTop: '10px' }}
               variant='contained'
               color='inherit'
-              onClick={handleFormSubmit}
+              onClick={isSignUp ? handleSignUpSubmit : handleFormSubmit}
             >
               {isSignUp ? 'Sign Up' : 'Login'}
             </Button>

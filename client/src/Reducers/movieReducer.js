@@ -22,7 +22,6 @@ const initialState = {
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN_MODAL:
-      console.log(state.loginModal);
       return { ...state, loginModal: !state.loginModal };
     case OPEN_MODAL:
       return { ...state, openModal: true };
