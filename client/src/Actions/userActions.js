@@ -1,4 +1,4 @@
-import { SIGNUP_USER, SIGNIN_USER } from '../ActionTypes';
+import { SIGNUP_USER, SIGNIN_USER, LOGOUT } from '../ActionTypes';
 import api from '../Api';
 
 export const signupuser = (body) => async (dispatch) => {
@@ -17,4 +17,8 @@ export const signinuser = (body) => async (dispatch) => {
 
   dispatch({ type: SIGNIN_USER, payload: token });
   localStorage.setItem('user', JSON.stringify(token));
+};
+
+export const logout = () => {
+  return { type: LOGOUT };
 };

@@ -11,3 +11,4 @@ export const LOGIN_MODAL = 'LOGIN_MODAL';
 
 export const SIGNUP_USER = 'SIGNUP_USER';
 export const SIGNIN_USER = 'SIGNIN_USER';
+export const LOGOUT = 'LOGOUT';

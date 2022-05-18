@@ -39,7 +39,7 @@ exports.signUpUser = async (req, res) => {
       res.status(200).json({
         status: 'success',
         token: token,
-        user: newUser,
+        data: newUser,
       });
     } else {
       return res.json({
@@ -85,6 +85,7 @@ exports.loginUser = async (req, res) => {
       res.status(200).json({
         status: 'success',
         token,
+        data: user,
       });
     } else {
       return res.json({

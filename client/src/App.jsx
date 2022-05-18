@@ -8,8 +8,8 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { token } = useSelector((state) => state.userReducer);
-  console.log(token);
+  const { data } = useSelector((state) => state.userReducer);
+  const token = data;
 
   const routes = (token) => {
     if (!token) {
@@ -32,7 +32,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-      <Navbar />
+      <Navbar login={token} />
       {routes(token)}
     </BrowserRouter>
   );
