@@ -3,19 +3,19 @@ import api from '../Api';
 
 export const signupuser = (body) => async (dispatch) => {
   const {
-    data: { token },
+    data: { token, data },
   } = await api.signUpUser(body);
 
-  dispatch({ type: SIGNUP_USER, payload: token });
+  dispatch({ type: SIGNUP_USER, payload: { token, data } });
   localStorage.setItem('user', JSON.stringify(token));
 };
 
 export const signinuser = (body) => async (dispatch) => {
   const {
-    data: { token },
+    data: { token, data },
   } = await api.signInUser(body);
 
-  dispatch({ type: SIGNIN_USER, payload: token });
+  dispatch({ type: SIGNIN_USER, payload: { token, data } });
   localStorage.setItem('user', JSON.stringify(token));
 };
 

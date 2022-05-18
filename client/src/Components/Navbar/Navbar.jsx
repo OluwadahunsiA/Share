@@ -21,7 +21,7 @@ import { openModal, switchLoginModal } from '../../Actions/movieActions';
 import { logout } from '../../Actions/userActions';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ login }) => {
+const Navbar = ({ login, user }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -57,7 +57,9 @@ const Navbar = ({ login }) => {
               </Grid>
             </Box>
 
-            <Typography className={classes.userName}>Name</Typography>
+            <Typography className={classes.userName}>
+              {user?.username || 'Name'}{' '}
+            </Typography>
             <Avatar className={classes.image} alt='user image' />
             {!login ? (
               <Button onClick={() => dispatch(switchLoginModal())}>

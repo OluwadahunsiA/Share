@@ -8,8 +8,8 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { data } = useSelector((state) => state.userReducer);
-  const token = data;
+  const { token, user } = useSelector((state) => state.userReducer);
+  const localToken = JSON.parse(localStorage.getItem('user'));
 
   const routes = (token) => {
     if (!token) {
@@ -32,8 +32,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-      <Navbar login={token} />
-      {routes(token)}
+      <Navbar login={token || localToken} user={user} />
+      {routes(token || localToken)}
     </BrowserRouter>
   );
 };
