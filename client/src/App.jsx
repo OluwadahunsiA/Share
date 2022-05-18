@@ -5,10 +5,12 @@ import MovieDetail from './Components/MovieDetail';
 import Auth from './Components/Auth/Auth';
 import { CssBaseline } from '@mui/material';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-
-let token = '';
+import { useSelector } from 'react-redux';
 
 const App = () => {
+  const { token } = useSelector((state) => state.userReducer);
+  console.log(token);
+
   const routes = (token) => {
     if (!token) {
       return (
