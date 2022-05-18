@@ -26,6 +26,7 @@ export const createMovie = (movie) => async (dispatch) => {
       data: { data },
     } = await api.createMovie(movie);
 
+
     dispatch({ type: CREATE_MOVIE, payload: data });
   } catch (err) {
     console.log(err);

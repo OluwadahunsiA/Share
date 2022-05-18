@@ -47,7 +47,7 @@ const Form = ({ open }) => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if (movie.title || movie.description || movie.tags || movie.file) {
+    if (movie.title && movie.description) {
       !editMovie
         ? dispatch(createMovie(movie))
         : dispatch(editOneMovie(editMovie._id, movie));

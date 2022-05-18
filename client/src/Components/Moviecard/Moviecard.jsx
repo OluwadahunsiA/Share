@@ -44,7 +44,6 @@ const Moviecard = ({ movie }) => {
   };
 
   const handleCardClick = (id) => {
-  
     dispatch(showMovieDetail(id));
     navigate(`/movie/${id}`);
   };
