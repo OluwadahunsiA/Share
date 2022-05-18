@@ -7,7 +7,10 @@ export const signupuser = (body) => async (dispatch) => {
   } = await api.signUpUser(body);
 
   dispatch({ type: SIGNUP_USER, payload: { token, data } });
-  localStorage.setItem('user', JSON.stringify(token));
+  localStorage.setItem(
+    'user',
+    JSON.stringify({ username: data.username, id: data._id, token })
+  );
 };
 
 export const signinuser = (body) => async (dispatch) => {
@@ -16,7 +19,10 @@ export const signinuser = (body) => async (dispatch) => {
   } = await api.signInUser(body);
 
   dispatch({ type: SIGNIN_USER, payload: { token, data } });
-  localStorage.setItem('user', JSON.stringify(token));
+  localStorage.setItem(
+    'user',
+    JSON.stringify({ username: data.username, id: data._id, token })
+  );
 };
 
 export const logout = () => {

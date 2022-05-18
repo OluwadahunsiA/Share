@@ -31,6 +31,8 @@ const Moviecard = ({ movie }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const localUser = JSON.parse(localStorage.getItem('user'));
+
   const handleEditClick = (id) => {
     dispatch(getOneMovie(id));
   };
@@ -52,9 +54,15 @@ const Moviecard = ({ movie }) => {
     <Card sx={{ maxWidth: 345 }}>
       <CardHeader
         action={
-          <IconButton onClick={() => handleEditClick(movie?._id)}>
-            <MoreHorizIcon />
-          </IconButton>
+          movie.createdBy === localUser.id ? (
+            <IconButton onClick={() => handleEditClick(movie?._id)}>
+              <MoreHorizIcon />
+            </IconButton>
+          ) : (
+            <IconButton>
+              <MoreHorizIcon sx={{ color: '#ffff' }} />
+            </IconButton>
+          )
         }
       />
       <CardActionArea onClick={() => handleCardClick(movie?._id)}>
@@ -99,9 +107,11 @@ const Moviecard = ({ movie }) => {
           }`}</Typography>
         </div>
 
-        <IconButton onClick={() => handleMovieDelete(movie?._id)}>
-          <DeleteIcon />
-        </IconButton>
+        {movie.createdBy === localUser.id && (
+          <IconButton onClick={() => handleMovieDelete(movie?._id)}>
+            <DeleteIcon />
+          </IconButton>
+        )}
       </CardActions>
     </Card>
   );

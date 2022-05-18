@@ -19,11 +19,13 @@ import { useSelector } from 'react-redux';
 const Form = ({ open }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const localUser = JSON.parse(localStorage.getItem('user'));
   const [movie, setMovie] = useState({
     title: '',
     description: '',
     tags: '',
     file: '',
+    createdBy: localUser.id || '',
   });
   const { editMovie, openModal } = useSelector((state) => state.movieReducer);
 

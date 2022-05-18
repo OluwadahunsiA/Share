@@ -18,6 +18,8 @@ const movieSchema = new mongoose.Schema({
   },
   file: String,
   likes: [String],
+
+  createdBy: String,
 });
 
 const Movie = mongoose.model('Movie', movieSchema);

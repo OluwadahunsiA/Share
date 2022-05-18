@@ -8,8 +8,8 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { token, user } = useSelector((state) => state.userReducer);
-  const localToken = JSON.parse(localStorage.getItem('user'));
+  const { token} = useSelector((state) => state.userReducer);
+  const localUser = JSON.parse(localStorage.getItem('user'));
 
   const routes = (token) => {
     if (!token) {
@@ -23,7 +23,10 @@ const App = () => {
       return (
         <Routes>
           <Route path={'/'} element={<Homepage />} exact />
-          <Route path={'/movie/:id'} element={<MovieDetail />} />
+          <Route
+            path={'/movie/:id'}
+            element={<MovieDetail user={localUser} />}
+          />
           <Route path={'*'} element={<p>Sorry this page does not exist</p>} />
         </Routes>
       );
@@ -32,8 +35,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-      <Navbar login={token || localToken} user={user} />
-      {routes(token || localToken)}
+      <Navbar login={token || localUser.token} user={localUser} />
+      {routes(token || localUser.token)}
     </BrowserRouter>
   );
 };
