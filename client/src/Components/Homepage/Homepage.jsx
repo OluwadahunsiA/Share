@@ -13,15 +13,11 @@ const Homepage = () => {
   const classes = useStyles();
 
   const {
-    movieReducer: { openModal, movies },
+    movieReducer: { openModal, movies, searchValue },
   } = useSelector((state) => state);
   const dispatch = useDispatch();
- 
-
- 
 
   useEffect(() => {
-
     if (movies.length === 0) {
       dispatch(getAllMovies());
     }
@@ -31,11 +27,17 @@ const Homepage = () => {
     <Box className={classes.gridContainer}>
       <Form open={openModal} />
       <Grid container spacing={2}>
-        {movies.map((movie) => (
-          <Grid key={movie._id} item xs={3}>
-            <Moviecard key={movie._id} movie={movie} />
-          </Grid>
-        ))}
+        {movies
+          .filter(
+            (movie) =>
+              movie?.title.includes(searchValue) ||
+              movie?.description.includes(searchValue)
+          )
+          .map((movie) => (
+            <Grid key={movie._id} item xs={3}>
+              <Moviecard key={movie._id} movie={movie} />
+            </Grid>
+          ))}
       </Grid>
     </Box>
   );

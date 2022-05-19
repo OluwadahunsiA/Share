@@ -9,6 +9,7 @@ import {
   DELETE_ONE_MOVIE,
   SHOW_MOVIE_DETAIL,
   LOGIN_MODAL,
+  VALUE_SEARCH,
 } from '../ActionTypes';
 import api from '../Api';
 
@@ -25,7 +26,6 @@ export const createMovie = (movie) => async (dispatch) => {
     const {
       data: { data },
     } = await api.createMovie(movie);
-
 
     dispatch({ type: CREATE_MOVIE, payload: data });
   } catch (err) {
@@ -96,4 +96,8 @@ export const showMovieDetail = (id) => {
 
 export const switchLoginModal = () => {
   return { type: LOGIN_MODAL };
+};
+
+export const searchValue = (value) => {
+  return { type: VALUE_SEARCH, payload: value };
 };

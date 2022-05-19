@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   AppBar,
   Box,
@@ -17,16 +17,26 @@ import { useStyles, theme } from './styles';
 import SearchIcon from '@mui/icons-material/Search';
 import AddCirlceOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import { useDispatch } from 'react-redux';
-import { openModal, switchLoginModal } from '../../Actions/movieActions';
+import {
+  openModal,
+  switchLoginModal,
+  searchValue,
+} from '../../Actions/movieActions';
 import { logout } from '../../Actions/userActions';
 import { Link } from 'react-router-dom';
 
 const Navbar = ({ login, user }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
 
   const handleIconClick = () => {
     dispatch(openModal());
+  };
+
+  const handleSearch = (e) => {
+    setValue(e.target.value);
+    dispatch(searchValue(e.target.value));
   };
 
   return (
@@ -40,7 +50,7 @@ const Navbar = ({ login, user }) => {
             >
               <Typography variant='h6'>
                 Share
-                <IconButton onClick={handleIconClick}>
+                <IconButton onClick={handleIconClick} value={value}>
                   <AddCirlceOutlineIcon />
                 </IconButton>
               </Typography>
@@ -49,7 +59,11 @@ const Navbar = ({ login, user }) => {
             <Box className={classes.boxStyle}>
               <Grid item xs={3} className={classes.gridStyle}>
                 <Paper className={classes.paperStyle}>
-                  <InputBase sx={{ ml: 1, flex: 1 }} placeholder='search' />
+                  <InputBase
+                    sx={{ ml: 1, flex: 1 }}
+                    placeholder='search'
+                    onChange={handleSearch}
+                  />
                   <IconButton sx={{ p: '10px' }}>
                     <SearchIcon className={classes.searchStyle} />
                   </IconButton>

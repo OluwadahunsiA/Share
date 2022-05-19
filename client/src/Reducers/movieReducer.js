@@ -9,6 +9,7 @@ import {
   DELETE_ONE_MOVIE,
   SHOW_MOVIE_DETAIL,
   LOGIN_MODAL,
+  VALUE_SEARCH,
 } from '../ActionTypes';
 
 const initialState = {
@@ -17,6 +18,7 @@ const initialState = {
   editMovie: null,
   movies: [],
   selectedMovie: [],
+  searchValue: '',
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -76,6 +78,12 @@ const movieReducer = (state = initialState, action) => {
         selectedMovie: state.movies.filter(
           (movie) => movie._id === action.payload
         ),
+      };
+
+    case VALUE_SEARCH:
+      return {
+        ...state,
+        searchValue: action.payload,
       };
 
     default:

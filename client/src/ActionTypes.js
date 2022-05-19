@@ -8,6 +8,7 @@ export const LIKE_ONE = 'LIKE_ONE';
 export const DELETE_ONE_MOVIE = 'DELETE_ONE_MOVIE';
 export const SHOW_MOVIE_DETAIL = 'SHOW_MOVIE_DETAIL';
 export const LOGIN_MODAL = 'LOGIN_MODAL';
+export const VALUE_SEARCH = 'VALUE_SEARCH';
 
 export const SIGNUP_USER = 'SIGNUP_USER';
 export const SIGNIN_USER = 'SIGNIN_USER';

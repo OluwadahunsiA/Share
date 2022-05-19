@@ -35,8 +35,8 @@ const App = () => {
   return (
     <BrowserRouter>
       <CssBaseline />
-      <Navbar login={token || localUser.token} user={localUser} />
-      {routes(token || localUser.token)}
+      <Navbar login={token || localUser?.token} user={localUser} />
+      {routes(token || localUser?.token)}
     </BrowserRouter>
   );
 };
