@@ -8,7 +8,7 @@ import { Route, Routes, BrowserRouter } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const App = () => {
-  const { token} = useSelector((state) => state.userReducer);
+  const { token } = useSelector((state) => state.userReducer);
   const localUser = JSON.parse(localStorage.getItem('user'));
 
   const routes = (token) => {
@@ -27,7 +27,7 @@ const App = () => {
             path={'/movie/:id'}
             element={<MovieDetail user={localUser} />}
           />
-          <Route path={'*'} element={<p>Sorry this page does not exist</p>} />
+          <Route path={'*'} element={<h1>Sorry this page does not exist</h1>} />
         </Routes>
       );
     }

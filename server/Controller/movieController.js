@@ -17,7 +17,6 @@ exports.getAllMovies = async (req, res) => {
 
 exports.createMovie = async (req, res) => {
   const body = req.body;
- 
 
   try {
     const data = await Model.create(body);
